@@ -1,8 +1,10 @@
 {
 	"name": "project-generator",
 	"displayName": "Project Generator",
-	"description": "",
-	"version": "0.0.1",
+	"description": "Generate the base file and/or folder for a project",
+	"version": "1.0.0",
+	"icon": "./ressources/icon-project-generator.png",
+	"publisher": "adrienGzc",
 	"engines": {
 		"vscode": "^1.30.0"
 	},
@@ -10,14 +12,21 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:extension.helloWorld"
+		"onCommand:extension.helloWorld",
+		"onCommand:extension.create_c_project"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
-		"commands": [{
-			"command": "extension.helloWorld",
-			"title": "Hello World"
-		}]
+		"commands": [
+			{
+				"command": "extension.helloWorld",
+				"title": "Hello World"
+			},
+			{
+				"command": "extension.create_c_project",
+				"title": "Create project: C"
+			}
+		]
 	},
 	"scripts": {
 		"vscode:prepublish": "yarn run compile",
@@ -27,10 +36,14 @@
 		"test": "yarn run compile && node ./node_modules/vscode/bin/test"
 	},
 	"devDependencies": {
-		"typescript": "^3.1.4",
-		"vscode": "^1.1.25",
-		"tslint": "^5.8.0",
+		"@types/mocha": "^2.2.42",
 		"@types/node": "^8.10.25",
-		"@types/mocha": "^2.2.42"
+		"tslint": "^5.8.0",
+		"typescript": "^3.1.4",
+		"vscode": "^1.1.25"
+	},
+	"dependencies": {
+		"@types/fs-extra": "^5.0.5",
+		"fs-extra": "^7.0.1"
 	}
 }
