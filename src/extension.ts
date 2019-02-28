@@ -1,14 +1,17 @@
 import * as vscode from 'vscode';
-//import * as path from 'path';
-import * as fse from "fs-extra";
+import { projectHandler } from './projectHandler';
 
 export function activate(context: vscode.ExtensionContext) {
 
-	let createProjectC = vscode.commands.registerCommand('extension.create_c_project', () => {
-		vscode.window.showInformationMessage('I create my project');
-	});
+  const createProjectC = vscode.commands.registerCommand('extension.create_c_project', () => {
+    projectHandler.create_c_project();
+  });
 
-	context.subscriptions.push(createProjectC);
+  const createProjectCPP = vscode.commands.registerCommand('extension.create_cpp_project', () => {
+    vscode.window.showInformationMessage('I create my project cpp');
+  });
+
+  context.subscriptions.push(createProjectC, createProjectCPP);
 }
 
 export function deactivate() {}
