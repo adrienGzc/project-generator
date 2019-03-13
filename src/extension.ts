@@ -1,10 +1,10 @@
 import * as vscode from 'vscode';
-import { projectHandler } from './projectHandler';
+import { creationProjectHandler } from './creationProjectHandler';
 
 export function activate(context: vscode.ExtensionContext) {
 
   const createProjectC = vscode.commands.registerCommand('extension.create_c_project', () => {
-    projectHandler.create_c_project();
+    creationProjectHandler.create_c_project();
   });
 
   const createProjectCPP = vscode.commands.registerCommand('extension.create_cpp_project', () => {

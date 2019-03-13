@@ -1,7 +1,7 @@
 {
 	"name": "project-generator",
 	"displayName": "Project Generator",
-	"description": "Generate the base file and/or folder for a project",
+	"description": "Generate a project base in many langage that you want",
 	"version": "1.0.0",
 	"icon": "./ressources/icon-project-generator.png",
 	"publisher": "adrienGzc",
@@ -12,16 +12,13 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:extension.helloWorld",
-		"onCommand:extension.create_c_project"
+		"onCommand:extension.create_c_project",
+		"onCommand:extension.create_cpp_project",
+		"onCommand:extension.create_react_project"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
 		"commands": [
-			{
-				"command": "extension.helloWorld",
-				"title": "Hello World"
-			},
 			{
 				"command": "extension.create_c_project",
 				"title": "Create project: C"
@@ -53,6 +50,11 @@
 	"dependencies": {
 		"@types/fs-extra": "^5.0.5",
 		"fs-extra": "^7.0.1",
+		"jshint": "^2.10.1",
 		"tslint-config-airbnb": "^5.11.1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/adrienGzc/project-generator.git"
 	}
 }
