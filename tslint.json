@@ -10,7 +10,8 @@
 			true,
 			"always"
 		],
-		"triple-equals": true
+		"triple-equals": true,
+		"max-line-length": false
 	},
 	"defaultSeverity": "warning"
 }
