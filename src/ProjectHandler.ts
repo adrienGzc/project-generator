@@ -6,6 +6,7 @@ import { content } from './Contents/contentHandling';
 import {
   createFolders,
   createFile,
+  openDialogForFolder,
 } from './utils';
 
 export namespace ProjectHandler {
@@ -16,54 +17,92 @@ export namespace ProjectHandler {
     content.CProject.tasks.tasks[2].args[1] = 'mingw32-make clean';
   }
 
-  export function create_c_project(dest: string) {
+  //
+  // CREATE C PROJECT
+  export const createCProject = async (destination: string) => {
     const { CProject } = content;
 
     CProject.dir.forEach(async (folder: string) => {
       try {
-        await createFolders(dest, folder);
+        await createFolders(destination, folder);
       } catch (error) {
         console.log(error);
       }
     });
     try {
-      createFile(path.join(dest, '.vscode'), 'tasks.json', JSON.stringify(CProject.tasks, null, 4));
-      createFile(path.join(dest, '.vscode'), 'launch.json', JSON.stringify(CProject.tasks, null, 4));
-      createFile(path.join(dest, 'src'), 'main.c', CProject.mainC);
-      createFile(dest, 'Makefile', CProject.makefileC);
+      createFile(path.join(destination, '.vscode'), 'tasks.json', JSON.stringify(CProject.tasks, null, 4));
+      createFile(path.join(destination, '.vscode'), 'launch.json', JSON.stringify(CProject.tasks, null, 4));
+      createFile(path.join(destination, 'src'), 'main.c', CProject.mainC);
+      createFile(destination, 'Makefile', CProject.makefileC);
     } catch (error) {
       console.log(`ERROR: creation file failed. ${error}`);
     }
-  }
+    vscode.window.showInformationMessage('C project create successfully');
+  };
 
-  export function create_cpp_project(dest: string) {
+  //
+  // CREATE CPP PROJECT
+  export const createCppProject = async (destination: string) => {
     const { CPPProject } = content;
 
     CPPProject.dir.forEach(async (folder: string) => {
       try {
-        await createFolders(dest, folder);
+        await createFolders(destination, folder);
       } catch (error) {
         console.log(error);
       }
     });
     try {
-      createFile(path.join(dest, '.vscode'), 'tasks.json', JSON.stringify(CPPProject.tasks, null, 4));
-      createFile(path.join(dest, '.vscode'), 'launch.json', JSON.stringify(CPPProject.tasks, null, 4));
-      createFile(path.join(dest, 'src'), 'main.cpp', CPPProject.mainCpp);
-      createFile(dest, 'Makefile', CPPProject.cppMakefile);
+      createFile(path.join(destination, '.vscode'), 'tasks.json', JSON.stringify(CPPProject.tasks, null, 4));
+      createFile(path.join(destination, '.vscode'), 'launch.json', JSON.stringify(CPPProject.tasks, null, 4));
+      createFile(path.join(destination, 'src'), 'main.cpp', CPPProject.mainCpp);
+      createFile(destination, 'Makefile', CPPProject.cppMakefile);
     } catch (error) {
       console.log(`ERROR: creation file failed. ${error}`);
     }
-  }
+    vscode.window.showInformationMessage('CPP project create successfully');
+  };
 
-  export function createReactProject(dest: string) {
-    const option: vscode.TerminalOptions = {
-      name: 'react',
-      shellPath: dest,
-    };
+  //
+  // CREATE REACT PROJECT
+  export const createReactProject = async (destination: string) => {
+    const projectName = await vscode.window.showInputBox({
+      ignoreFocusOut: true,
+      placeHolder: 'Name of your project. Example: hello-world',
+      prompt: 'Enter name of your project',
+      validateInput: (text: string) => null,
+    });
 
-    const term = vscode.window.createTerminal(option);
-    term.show();
-    term.sendText('npx create-react-app hello');
-  }
+    if (projectName !== undefined) {
+      const term = vscode.window.createTerminal();
+      term.show();
+      term.sendText(`cd ${destination}`);
+      term.sendText(`npx create-react-app ${projectName}`);
+      setTimeout(() => vscode.window.showInformationMessage('React project create successfully'), 3000);
+    } else {
+      vscode.window.showInformationMessage('ERROR: project name. Failed to create project');
+    }
+  };
+
+  //
+  // CREATE REACT NATIVE PROJECT
+  export const createReactNativeProject = async (destination: string) => {
+    const projectName = await vscode.window.showInputBox({
+      ignoreFocusOut: true,
+      placeHolder: 'Name of your project. Example: hello-world',
+      prompt: 'Enter name of your project',
+      validateInput: (text: string) => null,
+    });
+
+    if (projectName !== undefined) {
+      const term = vscode.window.createTerminal();
+      term.show();
+      term.sendText(`cd ${destination}`);
+      // term.sendText('sudo npm install -g expo-cli');
+      term.sendText(`react-native init ${projectName}`);
+      setTimeout(() => vscode.window.showInformationMessage('React Native project create successfully'), 10000);
+    } else {
+      vscode.window.showInformationMessage('ERROR: project name. Failed to create project');
+    }
+  };
 }

@@ -30,6 +30,10 @@
 			{
 				"command": "extension.create_react_project",
 				"title": "Create project: React"
+			},
+			{
+				"command": "extension.create_react_native_project",
+				"title": "Create project: React Native"
 			}
 		]
 	},

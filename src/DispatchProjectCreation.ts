@@ -7,27 +7,25 @@ import { openDialogForFolder } from './utils';
 export async function createProject(type: string) {
   // Open the windows to choose the folder to create the project
   const result: vscode.Uri = await openDialogForFolder();
-  // Open the destination with the project create in there
-  await vscode.commands.executeCommand('vscode.openFolder', result);
 
-  // If we get the folder destination then create project
   if (result && result.fsPath) {
     switch (type) {
       case 'c':
-        ProjectHandler.create_c_project(result.fsPath);
-        vscode.window.showInformationMessage('C project create successfully');
+        await vscode.commands.executeCommand('vscode.openFolder', result);
+        await ProjectHandler.createCProject(result.fsPath);
         break;
       case 'cpp':
-        ProjectHandler.create_cpp_project(result.fsPath);
-        vscode.window.showInformationMessage('CPP project create successfully');
+        await vscode.commands.executeCommand('vscode.openFolder', result);
+        await ProjectHandler.createCppProject(result.fsPath);
         break;
       case 'react':
-        ProjectHandler.createReactProject(result.fsPath);
-        vscode.window.showInformationMessage('React project create successfully');
+        await ProjectHandler.createReactProject(result.fsPath);
+        break;
+      case 'reactn':
+        await ProjectHandler.createReactNativeProject(result.fsPath);
+        break;
       default:
         console.log(`ERROR: ${type} invalid type project to create.`);
     }
-  } else {
-    vscode.window.showInformationMessage('FAILED: open dialog folder');
   }
 }
