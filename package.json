@@ -55,7 +55,8 @@
 		"@types/fs-extra": "^5.0.5",
 		"fs-extra": "^7.0.1",
 		"jshint": "^2.10.1",
-		"tslint-config-airbnb": "^5.11.1"
+		"tslint-config-airbnb": "^5.11.1",
+		"react-native-cli": "^2.0.1"
 	},
 	"repository": {
 		"type": "git",
