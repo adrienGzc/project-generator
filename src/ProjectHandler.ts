@@ -6,7 +6,6 @@ import { content } from './Contents/contentHandling';
 import {
   createFolders,
   createFile,
-  openDialogForFolder,
 } from './utils';
 
 export namespace ProjectHandler {
@@ -70,7 +69,13 @@ export namespace ProjectHandler {
       ignoreFocusOut: true,
       placeHolder: 'Name of your project. Example: hello-world',
       prompt: 'Enter name of your project',
-      validateInput: (text: string) => null,
+      validateInput: (text: string) => {
+        const correctProjectName = /^[A-Za-z-]+$/;
+        if (text.match(correctProjectName)) {
+          return null;
+        }
+        return 'Error project name.';
+      },
     });
 
     if (projectName !== undefined) {
@@ -91,7 +96,13 @@ export namespace ProjectHandler {
       ignoreFocusOut: true,
       placeHolder: 'Name of your project. Example: hello-world',
       prompt: 'Enter name of your project',
-      validateInput: (text: string) => null,
+      validateInput: (text: string) => {
+        const correctProjectName = /^[A-Za-z-]+$/;
+        if (text.match(correctProjectName)) {
+          return null;
+        }
+        return 'Error project name.';
+      },
     });
 
     if (projectName !== undefined) {
