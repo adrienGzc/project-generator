@@ -3,7 +3,7 @@
 	"displayName": "Project Generator",
 	"description": "Generate a project base in many langage that you want",
 	"version": "1.0.0",
-	"icon": "./ressources/crow-solid.png",
+	"icon": "ressources/crow-solid.png",
 	"publisher": "adrienGzc",
 	"engines": {
 		"vscode": "^1.30.0"
