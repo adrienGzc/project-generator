@@ -14,7 +14,8 @@
 	"activationEvents": [
 		"onCommand:extension.create_c_project",
 		"onCommand:extension.create_cpp_project",
-		"onCommand:extension.create_react_project"
+		"onCommand:extension.create_react_project",
+		"onCommand:extension.create_react_native_project"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
@@ -61,5 +62,7 @@
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/adrienGzc/project-generator.git"
-	}
+	},
+	"author": "adrienGzc",
+  "license": "UNLICENSED"
 }
