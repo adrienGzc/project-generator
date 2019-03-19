@@ -40,7 +40,7 @@
 	},
 	"scripts": {
 		"vscode:prepublish": "yarn run compile",
-		"compile": "tsc -p ./",
+		"compile": "tsc --strictNullChecks -p ./",
 		"watch": "tsc -watch -p ./",
 		"postinstall": "node ./node_modules/vscode/bin/install",
 		"test": "yarn run compile && node ./node_modules/vscode/bin/test"

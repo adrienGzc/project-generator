@@ -6,7 +6,7 @@ import { openDialogForFolder } from './utils';
 
 export async function createProject(type: string) {
   // Open the windows to choose the folder to create the project
-  const result: vscode.Uri = await openDialogForFolder();
+  const result = await openDialogForFolder();
 
   if (result && result.fsPath) {
     switch (type) {

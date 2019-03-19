@@ -4,7 +4,7 @@ import * as vscode from 'vscode';
 import * as path from 'path';
 import * as fse from 'fs-extra';
 
-export async function openDialogForFolder(): Promise<vscode.Uri> {
+export async function openDialogForFolder(): Promise<vscode.Uri | undefined> {
   const options: vscode.OpenDialogOptions = {
     canSelectFiles: false,
     canSelectFolders: true,
@@ -15,7 +15,7 @@ export async function openDialogForFolder(): Promise<vscode.Uri> {
   if (result) {
     return Promise.resolve(result[0]);
   }
-  return Promise.resolve(null);
+  return Promise.resolve(undefined);
 }
 
 export function createFolders(location: string, folder: string): void {
