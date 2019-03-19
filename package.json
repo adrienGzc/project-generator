@@ -64,5 +64,6 @@
 		"url": "https://github.com/adrienGzc/project-generator.git"
 	},
 	"author": "adrienGzc",
-  "license": "UNLICENSED"
+	"license": "ISC",
+	"homepage": "https://adriengzc.github.io/project-generator/"
 }
